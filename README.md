@@ -1,4 +1,4 @@
-# OSRE Front-end assignment note app
+# Bootmine Front-end assignment note app
 
 This assignment is created to get a good view on your front-end skills. You will be building a simple note app with basic CRUD (Create, Read, Update & Delete actions). Included in this repository you'll find a sketch file with all the desired elements. The way you approach this assignment is all up to you :)
 
