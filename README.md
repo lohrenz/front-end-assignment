@@ -1,3 +1,11 @@
+Start assignment: 26 september 2024
+Name: Lohrenz Amatkasan
+Back-end: Django as API with django rest framework
+Front-end: ReactJS with CSS
+Database: sqlite3
+
+
+
 # Bootmine Front-end assignment note app
 
 This assignment is created to get a good view on your front-end skills. You will be building a simple note app with basic CRUD (Create, Read, Update & Delete actions). Included in this repository you'll find a Figma file with all the desired elements. The way you approach this assignment is all up to you :)
