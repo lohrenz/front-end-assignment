@@ -1,0 +1,7 @@
+.notepagelist {
+    display: flex;
+    flex-direction: column;
+    background-color: #EEEEF1;
+    margin-left: 135px;
+    margin-right: 135px;
+}

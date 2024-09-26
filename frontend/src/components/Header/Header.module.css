@@ -1,0 +1,12 @@
+.header {
+    display: flex;
+    background-color: black;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 150px;
+    height: auto;
+}
