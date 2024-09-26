@@ -1,0 +1,72 @@
+.noteItem {
+    cursor: pointer;
+    background-color: #FFFFC9;
+    padding: 20px;
+    min-width: 370px;
+    max-width: 370px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0, 1);
+    margin: 0px 30px 30px 0px;
+    position: relative;
+}
+
+.noteItem:hover {
+    opacity: 0.8;
+}
+
+/* .noteItem.active,
+.noteItem.active:hover {
+    color: #EBEBB0;
+} */
+
+.noteTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    color: #767653;
+    border-bottom: 1.5px solid #EBEBB0;
+}
+
+.noteText {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #767653;
+}
+
+.noteAction {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+}
+
+.noteBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6e6e6e;
+}
+
+.noteBtn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.noteBtn:hover {
+    opacity: 0.5;
+}
+
+
+.itemDate {
+    font-size: small;
+    font-weight: 200;
+    left: 10px;
+    bottom: 10px;
+    color: #767653;
+    display: flex;
+    margin-right: 8px;
+    margin-bottom: -10px;
+}
