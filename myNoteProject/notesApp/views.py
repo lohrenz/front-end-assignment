@@ -50,6 +50,7 @@ def getRoute(request):
     ]
     return Response(routes)
 
+
 @api_view(['GET'])
 def getNotes(request):
     notes = Note.objects.all()
@@ -63,4 +64,29 @@ def getNote(request, pk):
     serializer = noteSerializer(note, many=False)
     return Response(serializer.data)    
 
-# Create your views here.
+
+@api_view(['PUT'])
+def updateNote(request, pk):
+    data = request.data # restframework
+    note = Note.objects.get(id=pk)
+    serializer = noteSerializer(instance=note, data=data) # update data
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def deleteNote(request, pk):
+    note = Note.objects.get(id=pk)
+    note.delete()
+    return  Response("note was deleted!")
+
+
+@api_view(['POST'])
+def createNote(request):
+    data = request.data
+    note = Note.objects.create( title=data.get('title'),
+                               body=data['body'])
+    serializer = noteSerializer(note, many=False)
+    return Response(serializer.data)
+    

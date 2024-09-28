@@ -43,10 +43,17 @@ INSTALLED_APPS = [
     
     # import django rest framework
     'rest_framework',
+    
+    #import cors-headers -> prevent django from blocking react
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    
+    # cors headers
+    "corsheaders.middleware.CorsMiddleware",
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,3 +134,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# cors-header
+CORS_ALLOW_ALL_ORIGINS = True
