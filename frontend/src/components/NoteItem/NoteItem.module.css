@@ -9,16 +9,15 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0, 1);
     margin: 0px 30px 30px 0px;
     position: relative;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+
 }
 
 .noteItem:hover {
     opacity: 0.8;
 }
-
-/* .noteItem.active,
-.noteItem.active:hover {
-    color: #EBEBB0;
-} */
 
 .noteTitle {
     font-size: 1.25rem;
@@ -35,6 +34,68 @@
     line-height: 1.5;
     color: #767653;
 }
+
+
+
+.noteItem input,
+.noteItem textarea {
+
+
+    font-family: "Works Sans", sans-serif;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #FFFFC9;
+    color: #767653;
+    box-shadow: none;
+    outline: none;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    padding: 0;
+
+}
+
+.noteItem input:focus,
+.noteItem textarea:focus {
+    background-color: #FFFFE0;
+    outline: none;
+    border: none;
+}
+
+.noteItem input {
+    font-size: 1.25rem;
+    padding-bottom: 10px;
+    font-weight: bold;
+    border-bottom: 1.5px solid #EBEBB0;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+
+}
+
+.noteItem textarea {
+    resize: none;
+    height: auto;
+    overflow: hidden;
+    line-height: 1.5;
+    font-size: 1rem;
+    padding-top: 6px;
+    margin-bottom: -7px;
+    min-height: 0px;
+
+
+}
+
+.noteItem textarea:focus {
+    height: auto;
+
+}
+
+
+
+
 
 .noteAction {
     position: absolute;
