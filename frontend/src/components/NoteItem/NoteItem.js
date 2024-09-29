@@ -10,29 +10,22 @@ const getTime = (note) => {
     return new Date(note.updated).toLocaleDateString();
 }
 
-function NoteItem({ note, onSave, onDelete }) {
-    const [Edit, setEdit] = useState(false);
+function NoteItem({ note, onSave, onDelete, onEditStart, onEditStop, isEditing }) {
     const [editTitle, setEditTitle] = useState(note.title);
     const [editBody, setEditBody] = useState(note.body);
     const textAreaRef = useRef(null);
 
 
     useEffect(() => {
-        if (Edit && textAreaRef.current) {
+        if (isEditing && textAreaRef.current) {
             textAreaRef.current.style.height = 'auto';
             textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
         }
-    }, [Edit]);
+    }, [isEditing]);
 
 
     const handlEditClick = () => {
-        setEdit(true);
-        setTimeout(() => {
-            if (textAreaRef.current) {
-                textAreaRef.current.style.height = 'auto';
-                textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
-            }
-        }, 0);
+        onEditStart(note.id);
     };
 
     const handleTickClick = () => {
@@ -43,12 +36,13 @@ function NoteItem({ note, onSave, onDelete }) {
             updated: new Date().toISOString(),
         };
         onSave(updateNote);
-        setEdit(false);
+        onEditStop();
+
 
     };
 
     const handlBackClick = () => {
-        setEdit(false);
+        onEditStop();
         setEditTitle(note.title);
         setEditBody(note.body);
     };
@@ -60,9 +54,9 @@ function NoteItem({ note, onSave, onDelete }) {
 
 
     return (
-        <div className={styles.noteItem}>
+        <div className={`${styles.noteItem} ${isEditing ? styles['edit-mode'] : ''}`}>
             {
-                Edit ? (
+                isEditing ? (
                     <>
                         <input placeholder="Nieuwe Notitie" type='text' className={styles.noteTitle} value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
                         <textarea rows="1" ref={textAreaRef} placeholder="Voeg hier je tekst toe" className={styles.noteText} value={editBody} onChange={(e) => {
@@ -81,7 +75,7 @@ function NoteItem({ note, onSave, onDelete }) {
             }
             <div className={styles.noteAction}>
                 {
-                    Edit ? (
+                    isEditing ? (
                         <>
                             <button className={styles.noteBtn} onClick={handleTickClick}>
                                 <TickIcon />

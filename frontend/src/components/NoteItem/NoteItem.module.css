@@ -131,3 +131,18 @@
     margin-right: 8px;
     margin-bottom: -10px;
 }
+
+.noteItem.edit-mode {
+    position: relative;
+    z-index: 11;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.noteItem:not(.edit-mode):hover {
+    opacity: 0.8;
+}
+
+.noteItem.edit-mode:hover {
+    opacity: 1;
+}

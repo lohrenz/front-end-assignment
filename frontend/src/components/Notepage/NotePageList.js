@@ -7,6 +7,8 @@ import { ReactComponent as AddIcon } from '../../assets/add.svg';
 
 function NotePageList() {
     const [notes, setNotes] = useState([]);
+    const [editingNoteId, setEditingNoteId] = useState(null);
+
 
     useEffect(() => {
         getNotes();
@@ -24,6 +26,14 @@ function NotePageList() {
             console.log(error);
         }
     };
+
+    const handleEditStartMode = (noteId) => {
+        setEditingNoteId(noteId);
+    }
+
+    const handleStopEditMode = () => {
+        setEditingNoteId(null);
+    }
 
 
     const updateNote = async (updatedNote) => {
@@ -114,11 +124,15 @@ function NotePageList() {
                         key={note.id}
                         note={note}
                         onSave={updateNote}
-                        onDelete={deleteNote} />
+                        onDelete={deleteNote}
+                        onEditStart={handleEditStartMode}
+                        onEditStop={handleStopEditMode}
+                        isEditing={editingNoteId === note.id} />
                 ))}
             <button className={styles.newNote} onClick={addNote}>
                 <AddIcon />
             </button>
+            {editingNoteId && <div className={styles.overlay}></div>}
         </div >
     )
 }
