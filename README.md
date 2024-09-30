@@ -4,6 +4,18 @@ Back-end: Django as API with django rest framework
 Front-end: ReactJS with CSS
 Database: sqlite3
 
+# Setup Linux/MacOs
+1. git clone git@github.com:lohrenz/front-end-assignment.git
+2. cd front-end-assignment/
+3. python -m venv venv
+4. source venv/bin/activate
+4. cd myNoteProject/
+5. pip install -r requirements.txt
+6. python manage.py migrate
+7. python manage.py runserver
+8. use the link provided in the terminal 
+9. Note: npm has te be installed.
+
 
 
 # Bootmine Front-end assignment note app
