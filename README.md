@@ -12,10 +12,13 @@ Database: sqlite3
 4. cd myNoteProject/
 5. pip install -r requirements.txt
 6. python manage.py migrate
-7. python manage.py runserver
-8. use the link provided in the terminal 
-9. Note: npm has te be installed.
+7. open a second terminal and cd to front-end-assigment/frontend make sure you are in venv
+8. npm install
+9. run python manage.py runserver in the django terminal, this is used as an api
+make sure you are in the myNoteProject/ directory.
+10. run npm start in the react temrinal, make sure you are in the frontend/ directory
 
+Enjoy! :)
 
 
 # Bootmine Front-end assignment note app
