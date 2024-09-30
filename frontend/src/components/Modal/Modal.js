@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Modal.module.css';
 
-const Modal = () => {
+const Modal = ({ onClose, onConfirm }) => {
     return (
         <div className={styles.modalContainer}>
             <div className={styles.modal}>
@@ -12,8 +12,8 @@ const Modal = () => {
                     </div>
                 </div>
                 <div className={styles.modalFooter}>
-                    <button className={`${styles.buttonSubmit} ${styles.buttonCancel}`}> ANNULEREN</button>
-                    <button className={`${styles.buttonSubmit} ${styles.buttonSave}`}>VERWIJDEREN</button>
+                    <button className={`${styles.buttonSubmit} ${styles.buttonCancel}`} onClick={onClose}> ANNULEREN</button>
+                    <button className={`${styles.buttonSubmit} ${styles.buttonSave}`} onClick={onConfirm}>VERWIJDEREN</button>
 
                 </div>
             </div>

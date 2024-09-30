@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from './NotePageList.module.css';
 import NoteItem from '../NoteItem/NoteItem';
+import Modal from '../Modal/Modal';
+
 import { ReactComponent as AddIcon } from '../../assets/add.svg';
 
 
@@ -8,6 +10,9 @@ import { ReactComponent as AddIcon } from '../../assets/add.svg';
 function NotePageList() {
     const [notes, setNotes] = useState([]);
     const [editingNoteId, setEditingNoteId] = useState(null);
+
+    const [openModal, setOpenModal] = useState(false);
+    const [noteToDelete, setNoteToDelete] = useState(null);
 
 
     useEffect(() => {
@@ -29,10 +34,27 @@ function NotePageList() {
 
     const handleEditStartMode = (noteId) => {
         setEditingNoteId(noteId);
-    }
+    };
 
     const handleStopEditMode = () => {
         setEditingNoteId(null);
+    };
+
+    const handleDeleteClick = (note) => {
+        setOpenModal(true);
+        setNoteToDelete(note);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+        setNoteToDelete(null);
+    };
+
+    const confirmDelete = () => {
+        if (noteToDelete) {
+            deleteNote(noteToDelete.id);
+        }
+        handleModalClose();
     }
 
 
@@ -124,7 +146,7 @@ function NotePageList() {
                         key={note.id}
                         note={note}
                         onSave={updateNote}
-                        onDelete={deleteNote}
+                        onDelete={() => handleDeleteClick(note)}
                         onEditStart={handleEditStartMode}
                         onEditStop={handleStopEditMode}
                         isEditing={editingNoteId === note.id} />
@@ -132,6 +154,12 @@ function NotePageList() {
             <button className={styles.newNote} onClick={addNote}>
                 <AddIcon />
             </button>
+            {openModal && (
+                <Modal
+                    onClose={handleModalClose}
+                    onConfirm={confirmDelete}
+                />
+            )}
             {editingNoteId && <div className={styles.overlay}></div>}
         </div >
     )
