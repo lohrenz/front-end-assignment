@@ -10,25 +10,30 @@ import { ReactComponent as AddIcon } from '../../assets/add.svg';
 function NotePageList() {
     const [notes, setNotes] = useState([]);
     const [editingNoteId, setEditingNoteId] = useState(null);
-
     const [openModal, setOpenModal] = useState(false);
     const [noteToDelete, setNoteToDelete] = useState(null);
+    const [isFetching, setIsFetching] = useState(false);
 
 
     useEffect(() => {
-        getNotes();
+        if (!isFetching) {
+            getNotes();
+        }
     }, []);
 
     const getNotes = async () => {
         try {
+            setIsFetching(true);
             const response = await fetch('/api/notes/');
             if (response.ok) {
                 const jsonResponse = await response.json();
                 console.log(jsonResponse);
-                setNotes(jsonResponse);
+                setNotes(Array.isArray(jsonResponse) ? jsonResponse : []);
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsFetching(false);
         }
     };
 
@@ -132,26 +137,30 @@ function NotePageList() {
                 console.log("Error bij bijwerken van notitie");
             }
         } catch (error) {
-            console.log("PUT-aanvraag Error:", error);
+            console.log("POST-aanvraag Error:", error);
         }
     }
 
 
     return (
         <div className={styles.notepagelist}>
-            {notes
-                .sort((a, b) => new Date(b.updated) - new Date(a.updated))
-                .map((note, index) => (
-                    <NoteItem
-                        key={note.id}
-                        note={note}
-                        onSave={updateNote}
-                        onDelete={() => handleDeleteClick(note)}
-                        onEditStart={handleEditStartMode}
-                        onEditStop={handleStopEditMode}
-                        isEditing={editingNoteId === note.id} />
-                ))}
-            <button className={styles.newNote} onClick={addNote}>
+            {Array.isArray(notes) && notes.length > 0 ? (
+                notes
+                    .sort((a, b) => new Date(b.updated) - new Date(a.updated))
+                    .map((note, index) => (
+                        <NoteItem
+                            key={note.id || index}
+                            note={note}
+                            onSave={updateNote}
+                            onDelete={() => handleDeleteClick(note)}
+                            onEditStart={handleEditStartMode}
+                            onEditStop={handleStopEditMode}
+                            isEditing={editingNoteId === note.id} />
+                    ))
+            ) : (
+                <p>Geen notities gevonden</p>
+            )}
+            <button className={styles.newNote} onClick={addNote} title='addNote'>
                 <AddIcon />
             </button>
             {openModal && (

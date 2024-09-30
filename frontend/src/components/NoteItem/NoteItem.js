@@ -77,19 +77,19 @@ function NoteItem({ note, onSave, onDelete, onEditStart, onEditStop, isEditing }
                 {
                     isEditing ? (
                         <>
-                            <button className={styles.noteBtn} onClick={handleTickClick}>
+                            <button className={styles.noteBtn} onClick={handleTickClick} aria-label='save'>
                                 <TickIcon />
                             </button>
-                            <button className={styles.noteBtn} onClick={handlBackClick}>
+                            <button className={styles.noteBtn} onClick={handlBackClick} aria-label='goBack'>
                                 <ArrowLeftIcon />
                             </button>
                         </>
                     ) : (
                         <>
-                            <button className={styles.noteBtn} onClick={() => onDelete(note.id)}>
+                            <button className={styles.noteBtn} onClick={() => onDelete(note.id)} aria-label='delete'>
                                 <DelIcon />
                             </button>
-                            <button className={styles.noteBtn} onClick={handlEditClick}>
+                            <button className={styles.noteBtn} onClick={handlEditClick} aria-label='edit'>
                                 <UpdateIcon />
                             </button>
                         </>
