@@ -67,7 +67,9 @@ ROOT_URLCONF = 'myNoteProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / '../frontend/build'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,3 +141,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # cors-header
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# Static files to connect with react
+STATICFILES_DIRS = [
+    BASE_DIR / '../frontend/build/static'
+]
+
